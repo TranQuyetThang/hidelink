@@ -30,9 +30,10 @@ html { height: 100%;}
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
     background-image:url('../img/bg.jpg');
-    background-repeat:no-repeat;/*
-    background-size:contain;
-    background-position:center;*/
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 #wrapper.toggled {
@@ -315,7 +316,6 @@ html { height: 100%;}
   box-sizing: border-box;
 }
 
-.
 
 form {
     margin-top: 20%;
@@ -488,19 +488,19 @@ textarea:focus {
                           
                           <div>
                             <div>
-                              <input id="Field1" name="Field1" type="text" class="field text fn" value="" size="8" tabindex="1" placeholder="Tên đăng nhập">
+                              <input id="Field1" name="Field1" type="text" class="form-control" value="" size="8" tabindex="1" placeholder="Tên đăng nhập">
 
                             </div>
                           </div>
                             
                           <div>
                             <div>
-                              <input class="reset full" type="password" name="password" id="password" autocomplete="off" placeholder="Mật khẩu">
+                              <input class="form-control" type="password" name="password" id="password" autocomplete="off" placeholder="Mật khẩu">
                            </div>
                           </div>
                           <div>
                                 <div>
-                                <input id="saveForm" name="saveForm" type="submit" value="Đăng nhập">
+                                <input id="saveForm" class="btn btn-primary" name="saveForm" type="submit" value="Đăng nhập">
                             </div>
                             </div>
                           
