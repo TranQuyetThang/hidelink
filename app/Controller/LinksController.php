@@ -1,6 +1,10 @@
 <?php
 class LinksController extends AppController {
 
+    public $components = array(
+        'Search.Prg'
+    );
+
     public function beforeFilter()
     {
         parent::beforeFilter();

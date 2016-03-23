@@ -33,4 +33,7 @@ class Link extends AppModel {
 
     public $useTable = 'links';
 
+    public $actsAs = array(
+        'Search.Searchable'
+    );
 }
