@@ -458,8 +458,18 @@ td, th {
                                 <td><?php echo $link['Link']['pic']; ?></td>
                                 <td><?php echo $link['Link']['description']; ?></td>
                                 <td><?php echo $link['Link']['user_id']; ?></td>
-                                <td><?php echo $link['Link']['status']; ?></td>
-                                <td><input type="checkbox" name="myTextEditBox" value="checked" /></td>
+                                <td>
+                                    <?php
+                                    if (!empty($link['Link']['status'])) {
+                                        echo $this->Html->link('Publish', array( 'action' => 'publish', $link['Link']['id'], 'admin' => true), array('class' => 'btn btn-mini', 'style' => 'width: 49px'));
+                                    } else {
+                                        echo $this->Html->link('<span class="muted">UnPublish</span>', array('action' => 'unpublish', $link['Link']['id']), array('class' => 'btn btn-mini', 'escape' => false));
+                                    }
+                                    ?>
+                                </td>
+                                <td>
+                                    <?php echo $this->Html->link('Edit', array('action' => 'edit', $link['Link']['id']), array('class' => 'btn btn-mini')); ?>
+                                </td>
                                 <td><input type="checkbox" name="myTextEditBox" value="checked" /></td>
                             </tr>
                             <?php endforeach; ?>
@@ -472,13 +482,9 @@ td, th {
                                         ?>
                                         <ul class="pagination">
                                             <?php
-                                            $this->Paginator->options();
-                                            echo $this->Paginator->first('<<', array('tag'=>'li'));
-                                            echo $this->Paginator->prev('<', array('tag'=>'li'));
-                                            echo $this->Paginator->numbers(
-                                                array('separator' => '','tag'=>'li'));
-                                            echo $this->Paginator->next('>', array('tag'=>'li'));
-                                            echo $this->Paginator->last('>>', array('tag'=>'li'));
+                                            echo $this->Paginator->prev('< previous', array(), null, array('tag'=>'li','class' => 'prev disabled'));
+                                            echo $this->Paginator->numbers(array('separator' => '','tag'=>'li'));
+                                            echo $this->Paginator->next('next >', array(), null, array('tag'=>'li','class' => 'next disabled'));
                                             ?>
                                         </ul>
                                     <?php endif; ?>

@@ -8,6 +8,9 @@ class LinksController extends AppController {
     public function beforeFilter()
     {
         parent::beforeFilter();
+        if (!empty($this->request->params['prefix']) && $this->request->params['prefix'] == 'admin') {
+            $this->Link->enablePublishable('find', false);
+        }
     }
 
     public function admin_index()
@@ -75,5 +78,37 @@ class LinksController extends AppController {
         }
         $this->Session->setFlash('Link was not deleted', 'error');
         $this->redirect(array('action' => 'index'));
+    }
+
+    public function admin_publish($id = null)
+    {
+        if (!$id || !$link = $this->Link->findById($id)) {
+            throw new NotFoundException('Không tìm thấy bài viết này');
+        }
+
+        if ($this->Link->publish($id)) {
+            $this->Session->setFlash('Đã đăng bài viết <strong>'.$link['Link']['title'].'</strong>',
+                'success');
+        } else {
+            $this->Session->setFlash('Có lỗi xảy ra');
+        }
+
+        $this->redirect($this->referer(array('action' => 'index'), true));
+    }
+
+    public function admin_unpublish($id = null)
+    {
+        if (!$id || !$link = $this->Link->findById($id)) {
+            throw new NotFoundException('Không tìm thấy bài viết này');
+        }
+
+        if ($this->Link->unPublish($id)) {
+            $this->Session->setFlash('Đã đăng bài viết <strong>'.$link['Link']['title'].'</strong>',
+                'success');
+        } else {
+            $this->Session->setFlash('Có lỗi xảy ra');
+        }
+
+        $this->redirect($this->referer(array('action' => 'index'), true));
     }
 }

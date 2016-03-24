@@ -34,6 +34,10 @@ class Link extends AppModel {
     public $useTable = 'links';
 
     public $actsAs = array(
-        'Search.Searchable'
+        'Search.Searchable',
+        'Utils.Publishable' => array(
+            'field' => 'status'
+        )
     );
+
 }
