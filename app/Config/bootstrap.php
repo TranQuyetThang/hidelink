@@ -67,6 +67,7 @@ Cache::config('default', array('engine' => 'File'));
  * CakePlugin::load('DebugKit'); // Loads a single plugin named DebugKit
  */
 
+
 /**
  * To prefer app translation over plugin translation, you can set
  *
@@ -109,3 +110,12 @@ CakeLog::config('error', array(
 	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
 	'file' => 'error',
 ));
+
+
+Configure::write('Routing.prefixes', array('admin'));
+
+CakePlugin::loadAll();
+
+//CakePlugin::loadAll(array(
+//    'Search'
+//));
