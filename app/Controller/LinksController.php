@@ -22,18 +22,24 @@ class LinksController extends AppController {
         $this->paginate = array(
             'Link' => array(
                 'order' => array('Link.id' => 'DESC'),
-                'conditions' => $parsedConditions
+                'conditions' => $parsedConditions,
+                'limit' => 2
             )
         );
-        $products = $this->paginate('Link');
+        $links = $this->paginate('Link');
 
-        $this->set(compact('products'));
+        $this->set(compact('links'));
     }
 
     public function admin_add($id = null)
     {
         if ($this->request->is('post') || $this->request->is('put')) {
             $this->Link->create();
+            $userId = 0;
+//            if($this->Auth->loggedIn()){
+//                $userId = $this->Auth->user('id');
+//            }
+            $this->request->data['Link']['user_id'] = $userId;
             if ($this->Link->save($this->request->data)) {
                 $this->Session->setFlash('The link has been saved', 'success');
                 $this->redirect(array('action' => 'index'));

@@ -305,7 +305,7 @@ html { height: 100%;}
 
 
 form {
-    margin-top: 20%;
+    margin-top: 5%;
 }
 
 form header {
@@ -394,7 +394,7 @@ textarea:focus {
     input[type=url],
     input[type=password],
     textarea,
-    select {
+    {
         width: 100%;
     }
 }
@@ -407,6 +407,9 @@ textarea:focus {
 td, th {
     text-align: center; /* center checkbox horizontally */
     vertical-align: middle; /* center checkbox vertically */
+}
+.scores label {
+    white-space: nowrap;
 }
 </style>
 
@@ -429,99 +432,189 @@ td, th {
             <div class="row" align="center">
                 <div class="col-xs-12 col-sm-6 col-md-10">
                     <div class="table-responsive">
-                        <table class="table table-bordered" style="margin-top: 50px;">
-                            <div>
-                                <div style="float: left;">Quản lý link</div>
-                                <div style="float: right;">
-                                    <button type="button" class="btn btn-success">Success</button>
-                                    <button type="button" class="btn btn-warning">Warning</button>
-                                    <button type="button" class="btn btn-danger">Danger</button>
+                        <div>
+                            <div style="float: left;">
+                                <h3></h3>
+                            </div>
+                            <div style="float: right;">
+                                <button class="btn btn-primary" type="submit" form="form1" value="Submit">Sumit</button>
+                                <button type="button" class="btn btn-default">Làm lại</button>
+                                <button type="button" class="btn btn-default">Danh sách</button>
+                            </div>
+                        </div>
+                        <div>
+                            <?php
+                            echo $this->Form->create('Link',
+                                array(
+                                    'type' => 'file',
+                                    'url' => Router::url(null, true),
+                                    'id' => 'article-form'
+
+                                ));
+                            ?>
+                            <?php
+                            if (!empty($this->data['Link']['id'])) {
+                                echo $this->Form->input('id');
+                            }
+                            ?>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Loại <span style="color: red">*</span>:</label>
+                                <?php
+                                echo $this->Form->input('Link.type',array(
+                                    'placeholder' => '',
+                                    'type'  => 'text',
+                                    'class' =>'form-control',
+                                    'label' =>false,
+                                    'div'   => false
+                                ));
+                                ?>
+                                <p style="margin-left: 220px;">Nếu là bài viết bình thường thì là <span style="color: red">POST</span>. Nếu là ảnh thì <span style="color: red">PICTURE</span></p>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Tiêu đề <span style="color: red">*</span>:</label>
+                                <?php
+                                echo $this->Form->input('Link.title',array(
+                                    'placeholder' => '',
+                                    'type'  => 'text',
+                                    'class' =>'form-control',
+                                    'label' =>false,
+                                    'div'   => false
+                                ));
+                                ?>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Hình ảnh <span style="color: red"></span>:</label>
+                                <?php
+                                echo $this->Form->input('Link.pic',array(
+                                    'placeholder' => '',
+                                    'type'  => 'text',
+                                    'class' =>'form-control',
+                                    'label' =>false,
+                                    'div'   => false
+                                ));
+                                ?>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Miêu tả <span style="color: red"></span>:</label>
+                                <textarea name="data[Link][description]" class="form-control" rows="8" cols="4" tabindex="4" style="width: 50%;"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Tên miền <span style="color: red"></span>:</label>
+                                <?php
+                                echo $this->Form->input('Link.domain', array(
+                                    'label' => false,
+                                    'empty' => "Empty",
+                                    'options' => array(
+                                        'url1' => 'url 1',
+                                        'url2' => 'url 2',
+                                        'url3' => 'url 3',
+                                        'url4' => 'url 4'
+                                    ),
+                                    'style' =>'width: 50%;height: 30px;',
+                                    'div'   => false
+                                ));
+                                ?>
+                                <p style="margin-left: 220px;">Tên miền này sử dụng cho bài</p>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">URL <span style="color: red">*</span>:</label>
+                                <?php
+                                echo $this->Form->input('Link.url',array(
+                                    'placeholder' => '',
+                                    'type'  => 'text',
+                                    'class' =>'form-control',
+                                    'label' =>false,
+                                    'div'   => false
+                                ));
+                                ?>
+                                <p style="margin-left: 220px;">Là đường dẫn cần chuyển hướng tới</p>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">URL <span style="color: red">*</span>:</label>
+                                <div class="scores">
+                                    <?php
+                                    echo $this->Form->input('Link.status', array(
+                                        'label' => '',
+                                        'legend'=> false,
+                                        'fieldset' => false,
+                                        'div'   => false,
+                                        'type' => 'radio',
+                                        'options' => array('0'=>'không', '1'=>'có'),
+                                    ));
+                                    ?>
                                 </div>
                             </div>
-                            <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Title</th>
-                                <th>PIC</th>
-                                <th>Description / Link</th>
-                                <th>User</th>
-                                <th>Status</th>
-                                <th>Edit</th>
-                                <th>Select</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php foreach ($links as $link): ?>
-                            <tr>
-                                <td><?php echo $link['Link']['id']; ?></td>
-                                <td><?php echo $link['Link']['title']; ?></td>
-                                <td><?php echo $link['Link']['pic']; ?></td>
-                                <td><?php echo $link['Link']['description']; ?></td>
-                                <td><?php echo $link['Link']['user_id']; ?></td>
-                                <td><?php echo $link['Link']['status']; ?></td>
-                                <td><input type="checkbox" name="myTextEditBox" value="checked" /></td>
-                                <td><input type="checkbox" name="myTextEditBox" value="checked" /></td>
-                            </tr>
-                            <?php endforeach; ?>
-                            <!-- phân trang -->
-                            <tr>
-                                <td colspan="8">
-                                    <?php
-                                    $hasPages = ($this->params['paging']['Link']['pageCount'] > 1);
-                                    if ($hasPages) :
-                                        ?>
-                                        <ul class="pagination">
-                                            <?php
-                                            $this->Paginator->options();
-                                            echo $this->Paginator->first('<<', array('tag'=>'li'));
-                                            echo $this->Paginator->prev('<', array('tag'=>'li'));
-                                            echo $this->Paginator->numbers(
-                                                array('separator' => '','tag'=>'li'));
-                                            echo $this->Paginator->next('>', array('tag'=>'li'));
-                                            echo $this->Paginator->last('>>', array('tag'=>'li'));
-                                            ?>
-                                        </ul>
-                                    <?php endif; ?>
-                                </td>
 
-                            </tr>
 
-                            </tbody>
-                        </table>
+                            <?php
+                            echo $this->Form->submit('Post bài',
+                                array(
+                                'class' => 'btn btn-primary',
+                                'label' => false,
+                                'div' => false
+                            ));
+                            ?>
+                            <?php
+                            echo $this->Form->input('danh sách',
+                                array(
+                                    'type' => 'button',
+                                    'class' => 'btn btn-primary',
+                                    'label' => false,
+                                    'div' => false
+                                ));
+                            ?>
+<!--                            <button type="button" class="btn btn-default">Làm lại</button>-->
+<!--                            <button type="button" class="btn btn-default">Danh sách</button>-->
+
+                            <?php echo $this->Form->end(); ?>
+
+                            <form action="#">
+
+
+                            </form>
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- /#page-content-wrapper -->
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var trigger = $('.hamburger'),
-                overlay = $('.overlay'),
-                isClosed = false;
-
-            trigger.click(function () {
-                hamburger_cross();
-            });
-
-            function hamburger_cross() {
-
-                if (isClosed == true) {
-                    overlay.hide();
-                    trigger.removeClass('is-open');
-                    trigger.addClass('is-closed');
-                    isClosed = false;
-                } else {
-                    overlay.show();
-                    trigger.removeClass('is-closed');
-                    trigger.addClass('is-open');
-                    isClosed = true;
-                }
-            }
-
-            $('[data-toggle="offcanvas"]').click(function () {
-                $('#wrapper').toggleClass('toggled');
-            });
-        });
-    </script>
 </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var trigger = $('.hamburger'),
+            overlay = $('.overlay'),
+            isClosed = false;
+
+        trigger.click(function () {
+            hamburger_cross();
+        });
+
+        function hamburger_cross() {
+
+            if (isClosed == true) {
+                overlay.hide();
+                trigger.removeClass('is-open');
+                trigger.addClass('is-closed');
+                isClosed = false;
+            } else {
+                overlay.show();
+                trigger.removeClass('is-closed');
+                trigger.addClass('is-open');
+                isClosed = true;
+            }
+        }
+
+        $('[data-toggle="offcanvas"]').click(function () {
+            $('#wrapper').toggleClass('toggled');
+        });
+        $('').resetForm();
+    });
+</script>
