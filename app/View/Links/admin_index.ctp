@@ -479,7 +479,10 @@ td, th {
                             <?php foreach ($links as $link): ?>
                             <tr>
                                 <td><?php echo $link['Link']['id']; ?></td>
-                                <td><?php echo $link['Link']['title']; ?></td>
+                                <td>
+                                <?php echo $link['Link']['title']; ?><br/>
+                                <?php echo $link['Link']['url'] ?>
+                                </td>
                                 <td><?php echo $link['Link']['pic']; ?></td>
                                 <td><?php echo $link['Link']['description']; ?></td>
                                 <td><?php echo $link['Link']['user_id']; ?></td>

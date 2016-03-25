@@ -125,19 +125,22 @@ class LinksController extends AppController {
     }
 
     public function getLink(){
-
+        //no ko find thay 
         if(empty($this->request->params['slug']))
-            throw new NotFoundException('Không tìm thấy link này');
+            throw new NotFoundException('Sai link rồi');
 
-        $url = $this->request->params['slug'] ;
+        $url = $this->request->params['slug'];
+        // debug($url);
         $link = $this->Link->find('first', array(
             'conditions' => array(
-                'Link.url' => $url,
-                'Link.status' => 1
+                'Link.url' => $url
             )
         ));
-
+        // debug($link);
+        if(empty($link))
+            throw new NotFoundException('Không tìm thấy link');        
         $title = 'Quản lý link';
+        $this->layout= false;
         $this->set(compact('link','title'));
     }
 }
