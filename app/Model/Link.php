@@ -37,7 +37,6 @@ class Link extends AppModel {
         'Search.Searchable',
         'Utils.Publishable' => array(
             'field' => 'status'
-        )
+        ),
     );
-
 }

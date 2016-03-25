@@ -460,7 +460,7 @@ td, th {
                                 <td><?php echo $link['Link']['user_id']; ?></td>
                                 <td>
                                     <?php
-                                    if (!empty($link['Link']['status'])) {
+                                    if (empty($link['Link']['status'])) {
                                         echo $this->Html->link('Publish', array( 'action' => 'publish', $link['Link']['id'], 'admin' => true), array('class' => 'btn btn-mini', 'style' => 'width: 49px'));
                                     } else {
                                         echo $this->Html->link('<span class="muted">UnPublish</span>', array('action' => 'unpublish', $link['Link']['id']), array('class' => 'btn btn-mini', 'escape' => false));
