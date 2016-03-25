@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>
+        <?php
+        if(!isset($title)){
+            echo 'Trang chủ';
+        }else{
+            echo $title;
+        }
+        ?>
+    </title>
     <?php
     echo '<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">';
     echo $this->fetch('css');

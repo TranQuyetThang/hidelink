@@ -37,7 +37,8 @@ class LinksController extends AppController {
         );
         $links = $this->paginate('Link');
 
-        $this->set(compact('links'));
+        $title = 'Quản lý link';
+        $this->set(compact('links','title'));
     }
 
     public function admin_add($id = null)
