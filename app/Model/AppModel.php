@@ -30,4 +30,13 @@ App::uses('Model', 'Model');
  * @package       app.Model
  */
 class AppModel extends Model {
+    public $actsAs = array('Containable');
+
+    public function saveField($name, $value, $validate = false)
+    {
+        if (empty($this->id)) {
+            throw new FatalErrorException('$this->id phải được set');
+        }
+        return parent::saveField($name, $value, $validate);
+    }
 }

@@ -1,8 +1,14 @@
 <?php
 class LinksController extends AppController {
 
+    public $uses = array();
+
     public $components = array(
         'Search.Prg'
+    );
+
+    public $filterArgs = array(
+        'status' => array('type' => 'value', 'field' => 'status'),
     );
 
     public function beforeFilter()
@@ -19,7 +25,7 @@ class LinksController extends AppController {
 
         $parsedConditions = array();
         if (!empty($this->passedArgs)) {
-            $parsedConditions = $this->Link->parseCriteria($this->passedArgs);
+//            $parsedConditions = $this->Link->parseCriteria($this->passedArgs);
         }
 
         $this->paginate = array(
