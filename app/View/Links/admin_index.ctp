@@ -408,6 +408,32 @@ td, th {
     text-align: center; /* center checkbox horizontally */
     vertical-align: middle; /* center checkbox vertically */
 }
+.paging {
+    background: #fff;
+    color: #ccc;
+    clear: both;
+    border-left: 1px solid #CCC;
+}
+.paging .disabled {
+    color: #ddd;
+}
+.prev{
+    border-left: 1px solid #ccc !important; 
+}
+.paging > span {
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-left: 0;
+}
+.paging .current, .paging .disabled, .paging a {
+    text-decoration: none;
+    display: inline-block;
+    color: #0069d6;
+    padding: 5px 14px;
+}
+.current{
+    background-color: springgreen;
+}
 </style>
 
 <div id="wrapper">
@@ -427,15 +453,14 @@ td, th {
                 </div>
             </div>
             <div class="row" align="center">
-                <div class="col-xs-12 col-sm-6 col-md-10">
+                <div class="col-xs-12 col-sm-6 col-md-12">
                     <div class="table-responsive">
                         <table class="table table-bordered" style="margin-top: 50px;">
                             <div>
                                 <div style="float: left;">Quản lý link</div>
                                 <div style="float: right;">
-                                    <button type="button" class="btn btn-success">Success</button>
-                                    <button type="button" class="btn btn-warning">Warning</button>
-                                    <button type="button" class="btn btn-danger">Danger</button>
+                                    <a href='<?php echo $this->Html->url(array("action" => "add"))?>'><button type="button" class="btn btn-success">Thêm link</button></a>
+                                    <button type="button" class="btn btn-danger">Xóa</button>
                                 </div>
                             </div>
                             <thead>
@@ -480,13 +505,13 @@ td, th {
                                     $hasPages = ($this->params['paging']['Link']['pageCount'] > 1);
                                     if ($hasPages) :
                                         ?>
-                                        <ul>
+                                        <div class="paging">
                                             <?php
-                                            echo $this->Paginator->prev('< previous', array(), null, array('tag'=>'li','class' => 'prev disabled'));
-                                            echo $this->Paginator->numbers(array('separator' => '','tag'=>'li'));
-                                            echo $this->Paginator->next('next >', array(), null, array('tag'=>'li','class' => 'next disabled'));
+                                            echo $this->Paginator->prev('< previous', array(), null, array('tag'=>'span','class' => 'prev disabled'));
+                                            echo $this->Paginator->numbers(array('separator' => '','tag'=>'span'));
+                                            echo $this->Paginator->next('next >', array(), null, array('tag'=>'span','class' => 'next disabled'));
                                             ?>
-                                        </ul>
+                                        </div>
                                     <?php endif; ?>
                                 </td>
 
