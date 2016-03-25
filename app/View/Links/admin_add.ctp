@@ -539,7 +539,7 @@ td, th {
                             <?php } ?>
 
                             <div class="form-group">
-                                <label for="exampleInputEmail1">URL <span style="color: red">*</span>:</label>
+                                <label for="exampleInputEmail1">Status <span style="color: red">*</span>:</label>
                                 <div class="scores">
                                     <?php
                                     echo $this->Form->input('Link.status', array(

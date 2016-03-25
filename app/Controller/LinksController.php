@@ -123,4 +123,21 @@ class LinksController extends AppController {
 
         $this->redirect($this->referer(array('action' => 'index'), true));
     }
+
+    public function getLink(){
+
+        if(empty($this->request->params['slug']))
+            throw new NotFoundException('Không tìm thấy link này');
+
+        $url = $this->request->params['slug'] ;
+        $link = $this->Link->find('first', array(
+            'conditions' => array(
+                'Link.url' => $url,
+                'Link.status' => 1
+            )
+        ));
+
+        $title = 'Quản lý link';
+        $this->set(compact('link','title'));
+    }
 }
