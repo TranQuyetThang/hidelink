@@ -480,7 +480,7 @@ td, th {
                                     $hasPages = ($this->params['paging']['Link']['pageCount'] > 1);
                                     if ($hasPages) :
                                         ?>
-                                        <ul class="pagination">
+                                        <ul>
                                             <?php
                                             echo $this->Paginator->prev('< previous', array(), null, array('tag'=>'li','class' => 'prev disabled'));
                                             echo $this->Paginator->numbers(array('separator' => '','tag'=>'li'));
