@@ -32,7 +32,7 @@ class LinksController extends AppController {
             'Link' => array(
                 'order' => array('Link.id' => 'DESC'),
                 'conditions' => $parsedConditions,
-                'limit' => 2
+                'limit' => 5
             )
         );
         $links = $this->paginate('Link');
@@ -50,6 +50,9 @@ class LinksController extends AppController {
 //                $userId = $this->Auth->user('id');
 //            }
             $this->request->data['Link']['user_id'] = $userId;
+            if(empty($this->request->data['Link']['url']))
+                $this->request->data['Link']['url']     = md5(uniqid());
+
             if ($this->Link->save($this->request->data)) {
                 $this->Session->setFlash('The link has been saved', 'success');
                 $this->redirect(array('action' => 'index'));
@@ -93,7 +96,8 @@ class LinksController extends AppController {
             throw new NotFoundException('Không tìm thấy bài viết này');
         }
 
-        if ($this->Link->publish($id)) {
+        $this->Link->id = $id;
+        if ($this->Link->saveField('status', 1, array('callbacks' => false))) {
             $this->Session->setFlash('Đã đăng bài viết <strong>'.$link['Link']['title'].'</strong>',
                 'success');
         } else {
@@ -109,7 +113,8 @@ class LinksController extends AppController {
             throw new NotFoundException('Không tìm thấy bài viết này');
         }
 
-        if ($this->Link->unPublish($id)) {
+        $this->Link->id = $id;
+        if ($this->Link->saveField('status', 0 , array('callbacks' => false))) {
             $this->Session->setFlash('Đã đăng bài viết <strong>'.$link['Link']['title'].'</strong>',
                 'success');
         } else {
