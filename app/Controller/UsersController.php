@@ -11,7 +11,6 @@ class UsersController extends AppController {
                 'username'  => $this->request->data['User']['username']
             )));
             if(!empty($user)){
-                if(!$this->Auth->loggedIn()) $this->Session->write("User",$user['User']);
                 $this->set('login_success',true);
             }else{
                 $this->set('login_error',true);

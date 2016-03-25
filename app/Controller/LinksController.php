@@ -21,9 +21,6 @@ class LinksController extends AppController {
 
     public function admin_index()
     {
-        if( !$this->Auth->loggedIn()) {
-            $this->redirect('/');
-        }
         $this->Prg->commonProcess();
 
         $parsedConditions = array();
