@@ -54,7 +54,7 @@ class LinksController extends AppController {
 //            }
             $this->request->data['Link']['user_id'] = $userId;
             if(empty($this->request->data['Link']['url']))
-                $this->request->data['Link']['url']     = md5(uniqid());
+                $this->request->data['Link']['url']     = $this->Link->generateLink();
 
             if ($this->Link->save($this->request->data)) {
                 $this->Session->setFlash('The link has been saved', 'success');
