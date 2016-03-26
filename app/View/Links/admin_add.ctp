@@ -489,8 +489,7 @@ td, th {
                                 <?php
                                 echo $this->Form->input('Link.pic',array(
                                     'placeholder' => '',
-                                    'type'  => 'text',
-                                    'class' =>'form-control',
+                                    'type'  => 'file',
                                     'label' =>false,
                                     'div'   => false
                                 ));

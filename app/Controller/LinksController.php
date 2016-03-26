@@ -47,6 +47,16 @@ class LinksController extends AppController {
     public function admin_add($id = null)
     {
         if ($this->request->is('post') || $this->request->is('put')) {
+//            debug($this->request);exit;
+            $filename   =   '';
+            if($this->request->data['Link']['pic']['name'] != '') {
+                $filename = WWW_ROOT . DS . $this->request->data['Link']['pic']['name'];
+                move_uploaded_file($this->data['Link']['pic']['tmp_name'], $filename);
+                $this->request->data['Link']['pic'] = $filename;
+            }else{
+                unset($this->request->data['Link']['pic']);
+                $this->request->data['Link']['url'] = '';
+            }
             $this->Link->create();
             $userId = 0;
 //            if($this->Auth->loggedIn()){
