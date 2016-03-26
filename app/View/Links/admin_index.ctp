@@ -484,7 +484,7 @@ td, th {
                                 <?php echo $link['Link']['url'] ?>
                                 </td>
                                 <td><?php echo $link['Link']['pic']; ?></td>
-                                <td><?php echo $link['Link']['description']; ?></td>
+                                <td><?php echo $link['Link']['description']; ?> <br/> <?php echo $link['Link']['domain'] ?></td>
                                 <td><?php echo $link['Link']['user_id']; ?></td>
                                 <td>
                                     <?php

@@ -411,6 +411,9 @@ td, th {
 .scores label {
     white-space: nowrap;
 }
+.half-w {
+    width: 50%;
+}
 </style>
 
 <div id="wrapper">
@@ -498,20 +501,26 @@ td, th {
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Miêu tả <span style="color: red"></span>:</label>
-                                <textarea name="data[Link][description]" class="form-control" rows="8" cols="4" tabindex="4" style="width: 50%;"></textarea>
+                                <?php  
+                                echo $this->Form->input('Link.description', array(
+                                    'placeholder' => '',
+                                    'type' => 'textarea',
+                                    'class' => 'form-control half-w',
+                                    'label' => false,
+                                    'div' => false,'rows' => '5', 'cols' => '5'
+                                ));
+                                ?>
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tên miền <span style="color: red"></span>:</label>
                                 <?php
+                                $protocol = stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://';
                                 echo $this->Form->input('Link.domain', array(
                                     'label' => false,
-                                    'empty' => "Empty",
+                                    // 'empty' => "Empty",
                                     'options' => array(
-                                        'url1' => 'url 1',
-                                        'url2' => 'url 2',
-                                        'url3' => 'url 3',
-                                        'url4' => 'url 4'
+                                        $protocol.$_SERVER['SERVER_NAME'] => $protocol.$_SERVER['SERVER_NAME'],
                                     ),
                                     'style' =>'width: 50%;height: 30px;',
                                     'div'   => false
