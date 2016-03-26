@@ -59,9 +59,9 @@ class LinksController extends AppController {
             }
             $this->Link->create();
             $userId = 0;
-//            if($this->Auth->loggedIn()){
-//                $userId = $this->Auth->user('id');
-//            }
+            if( $this->Session->read('User')['id'] != null){
+                $userId = $this->Session->read('User')['id'];
+            }
             $this->request->data['Link']['user_id'] = $userId;
             if(empty($this->request->data['Link']['url']))
                 $this->request->data['Link']['url']     = $this->Link->generateLink();
