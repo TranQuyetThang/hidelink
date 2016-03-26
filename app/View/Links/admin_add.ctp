@@ -521,22 +521,25 @@ td, th {
                                 <p style="margin-left: 220px;">Tên miền này sử dụng cho bài</p>
                             </div>
 
+                            <?php if (!empty($this->data['Link']['id'])) { ?>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">URL <span style="color: red">*</span>:</label>
                                 <?php
-                                echo $this->Form->input('Link.url',array(
+                                echo $this->Form->input('Link.url', array(
                                     'placeholder' => '',
-                                    'type'  => 'text',
-                                    'class' =>'form-control',
-                                    'label' =>false,
-                                    'div'   => false
+                                    'type' => 'text',
+                                    'class' => 'form-control',
+                                    'label' => false,
+                                    'div' => false,
+                                    'readonly' => 'readonly'
                                 ));
                                 ?>
                                 <p style="margin-left: 220px;">Là đường dẫn cần chuyển hướng tới</p>
                             </div>
+                            <?php } ?>
 
                             <div class="form-group">
-                                <label for="exampleInputEmail1">URL <span style="color: red">*</span>:</label>
+                                <label for="exampleInputEmail1">Status <span style="color: red">*</span>:</label>
                                 <div class="scores">
                                     <?php
                                     echo $this->Form->input('Link.status', array(

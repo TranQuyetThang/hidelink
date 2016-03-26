@@ -69,7 +69,7 @@ class DATABASE_CONFIG {
 	public $default = array(
 		'datasource' => 'Database/Sqlite',
 		'persistent' => false,
-		'database' => 'database_name',
+		'database' => 'hide_link.sqlite',
 		'prefix' => '',
 		'encoding' => 'utf8',
 	);
