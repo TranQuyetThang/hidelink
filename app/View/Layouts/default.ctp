@@ -27,9 +27,9 @@
 <?php echo $this->fetch('content'); ?>
 
 <?php
-if (Configure::read('debug') == 2) {
-    echo $this->element('sql_dump');
-}
-?>
+//if (Configure::read('debug') == 2) {
+//    echo $this->element('sql_dump');
+//}
+//?>
 </body>
 </html>
