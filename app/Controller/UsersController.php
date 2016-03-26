@@ -11,10 +11,14 @@ class UsersController extends AppController {
                 'username'  => $this->request->data['User']['username']
             )));
             if(!empty($user)){
+                $this->Session->write('User',$user['User']);
                 $this->set('login_success',true);
             }else{
                 $this->set('login_error',true);
             }
         }
+    }
+    public function register(){
+        $this->layout = 'default2';
     }
 }
