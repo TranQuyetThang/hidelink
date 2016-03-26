@@ -21,4 +21,11 @@ class UsersController extends AppController {
     public function register(){
         $this->layout = 'default2';
     }
+
+    public function logout(){
+        if( $this->Session->read('User') )
+            $this->Session->destroy();
+
+        $this->redirect($this->referer(array('action' => 'index')));
+    }
 }

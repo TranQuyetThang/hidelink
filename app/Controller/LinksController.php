@@ -16,6 +16,9 @@ class LinksController extends AppController {
         parent::beforeFilter();
         if (!empty($this->request->params['prefix']) && $this->request->params['prefix'] == 'admin') {
             $this->Link->enablePublishable('find', false);
+
+            if( $this->Session->read('User') == null)
+                $this->redirect($this->referer(array('controller' => 'users' ,'action' => 'index', 'admin' => false)));
         }
     }
 
