@@ -39,6 +39,6 @@ class UsersController extends AppController {
         if( $this->Session->read('User') )
             $this->Session->destroy();
 
-        $this->redirect($this->referer(array('action' => 'index')));
+        $this->redirect(array('action' => 'index'));
     }
 }
