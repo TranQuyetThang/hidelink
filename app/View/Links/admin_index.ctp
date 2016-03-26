@@ -481,10 +481,10 @@ td, th {
                                 <td><?php echo $link['Link']['id']; ?></td>
                                 <td>
                                 <?php echo $link['Link']['title']; ?><br/>
-                                <?php echo $link['Link']['url'] ?>
+                                <span style="border: 1px solid;">View <?php echo $link['Link']['total_view']; ?></span>
                                 </td>
                                 <td><?php echo $link['Link']['pic']; ?></td>
-                                <td><?php echo $link['Link']['description']; ?> <br/> <?php echo $link['Link']['domain'] ?></td>
+                                <td><?php echo $link['Link']['description']; ?> <br/> <span style="border: 1px solid;padding: 2px 20px;"><?php echo $link['Link']['domain'].'/hlink/slug/'.$link['Link']['slug'] ?></span></td>
                                 <td><?php echo $link['Link']['user_id']; ?></td>
                                 <td>
                                     <?php

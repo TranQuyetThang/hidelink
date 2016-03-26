@@ -492,7 +492,8 @@ td, th {
                                 <?php
                                 echo $this->Form->input('Link.pic',array(
                                     'placeholder' => '',
-                                    'type'  => 'file',
+                                    'type'  => 'text',
+                                    'class' =>'form-control',
                                     'label' =>false,
                                     'div'   => false
                                 ));
@@ -539,12 +540,23 @@ td, th {
                                     'class' => 'form-control',
                                     'label' => false,
                                     'div' => false,
-                                    'readonly' => 'readonly'
+                                    // 'readonly' => 'readonly'
                                 ));
                                 ?>
                                 <p style="margin-left: 220px;">Là đường dẫn cần chuyển hướng tới</p>
                             </div>
                             <?php } ?>
+        
+                            <?php
+                                if (!empty($this->data['Link']['slug'])) 
+                                { 
+                                    echo $this->Form->hidden('Link.slug');
+                                }
+                                if (!empty($this->data['Link']['total_view'])) 
+                                { 
+                                    echo $this->Form->hidden('Link.total_view');
+                                }
+                            ?>
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Status <span style="color: red">*</span>:</label>

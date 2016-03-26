@@ -47,28 +47,25 @@ class LinksController extends AppController {
     public function admin_add($id = null)
     {
         if ($this->request->is('post') || $this->request->is('put')) {
-//            debug($this->request);exit;
-            $filename   =   '';
-            if($this->request->data['Link']['pic']['name'] != '') {
-                $filename = WWW_ROOT . DS . $this->request->data['Link']['pic']['name'];
-                move_uploaded_file($this->data['Link']['pic']['tmp_name'], $filename);
-                $this->request->data['Link']['pic'] = $filename;
-            }else{
-                unset($this->request->data['Link']['pic']);
-                $this->request->data['Link']['url'] = '';
-            }
+
             $this->Link->create();
             $userId = 0;
             if( $this->Session->read('User')['id'] != null){
                 $userId = $this->Session->read('User')['id'];
             }
             $this->request->data['Link']['user_id'] = $userId;
-            if(empty($this->request->data['Link']['url']))
-                $this->request->data['Link']['url']     = $this->Link->generateLink();
 
+            if(empty($this->request->data['Link']['slug']))
+            {    
+                $this->request->data['Link']['slug'] = $this->Link->generateLink();
+            }
+            if(empty($this->request->data['Link']['total_view']))
+            {
+                $this->request->data['Link']['total_view'] = 0;
+            }
             if ($this->Link->save($this->request->data)) {
                 $this->Session->setFlash('The link has been saved', 'success');
-                $this->redirect(array('action' => 'index'));
+                // $this->redirect(array('action' => 'index'));
             } else {
                 $this->Session->setFlash('The link could not be saved. Please, try again.', 'error');
             }
@@ -146,13 +143,20 @@ class LinksController extends AppController {
         // debug($url);
         $link = $this->Link->find('first', array(
             'conditions' => array(
-                'Link.url' => $url
+                'Link.slug' => $url
             )
         ));
-        // debug($link);
         if(empty($link))
-            throw new NotFoundException('Không tìm thấy link');        
-        $title = 'Quản lý link';
+        {
+            throw new NotFoundException('Không tìm thấy link');   
+        }
+        else     
+        {
+            $title = 'Quản lý link';
+            $counter = $link['Link']['total_view']+1;
+            $this->Link->id = $link['Link']['id'];
+            $this->Link->saveField('total_view', $counter);
+        }
         $this->layout= false;
         $this->set(compact('link','title'));
     }
