@@ -7,6 +7,7 @@
 /build
 /dist
 /tags
+/app/webroot/hide_link.sqlite
 *.mo
 
 # IDE and editor specific files #
