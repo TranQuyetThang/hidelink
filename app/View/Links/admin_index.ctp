@@ -470,7 +470,13 @@ td, th {
                                 <th>PIC</th>
                                 <th>Description / Link</th>
                                 <th>User</th>
-                                <th>Status</th>
+                                <th>
+                                    Status
+                                    <br>
+                                    On: sẽ giấu link
+                                    <br>
+                                    Off: chuyển đến link
+                                </th>
                                 <th>Edit</th>
                                 <th>Select</th>
                             </tr>
@@ -489,9 +495,9 @@ td, th {
                                 <td>
                                     <?php
                                     if (empty($link['Link']['status'])) {
-                                        echo $this->Html->link('Publish', array( 'action' => 'publish', $link['Link']['id'], 'admin' => true), array('class' => 'btn btn-mini', 'style' => 'width: 49px'));
+                                        echo $this->Html->link('On', array( 'action' => 'publish', $link['Link']['id'], 'admin' => true), array('class' => 'btn btn-mini', 'style' => 'width: 49px'));
                                     } else {
-                                        echo $this->Html->link('<span class="muted">UnPublish</span>', array('action' => 'unpublish', $link['Link']['id']), array('class' => 'btn btn-mini', 'escape' => false));
+                                        echo $this->Html->link('Off', array('action' => 'unpublish', $link['Link']['id']), array('class' => 'btn btn-mini', 'escape' => false));
                                     }
                                     ?>
                                 </td>

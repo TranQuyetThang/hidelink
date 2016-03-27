@@ -1,7 +1,3 @@
-<?php if(!empty($link)){ 
-// debug($link);
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +21,3 @@
 </body>
 
 </html>
-
-<?php }else{ ?>
-    Ko phải link redirct
-<?php } ?>

@@ -70,6 +70,7 @@
                                         'id' => 'password',
                                         'placeholder' => 'Mật khẩu',
                                         'autocomplete' => 'off',
+                                        'tabindex' => '2',
                                         'class' => 'form-control',
                                         'type'  => 'password'
                                     )
@@ -78,7 +79,7 @@
                         </div>
                         <div>
                             <div>
-                                <input id="saveForm" class="btn btn-primary" type="submit" value="Đăng nhập">
+                                <input id="saveForm" class="btn btn-primary" type="submit" value="Đăng nhập" tabindex=3>
                             </div>
                         </div>
 

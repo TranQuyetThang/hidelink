@@ -15,7 +15,7 @@ class LinksController extends AppController {
     {
         parent::beforeFilter();
         if (!empty($this->request->params['prefix']) && $this->request->params['prefix'] == 'admin') {
-            $this->Link->enablePublishable('find', false);
+            // $this->Link->enablePublishable('find', false);
 
             if( $this->Session->read('User') == null)
                 $this->redirect($this->referer(array('controller' => 'users' ,'action' => 'index', 'admin' => false)));
@@ -65,7 +65,7 @@ class LinksController extends AppController {
             }
             if ($this->Link->save($this->request->data)) {
                 $this->Session->setFlash('The link has been saved', 'success');
-                // $this->redirect(array('action' => 'index'));
+                $this->redirect(array('action' => 'index'));
             } else {
                 $this->Session->setFlash('The link could not be saved. Please, try again.', 'error');
             }
@@ -153,6 +153,10 @@ class LinksController extends AppController {
         }
         else     
         {
+            if($link['Link']['status']){
+                // $this->redirect('http://www.example.com');
+                $this->redirect($link['Link']['url']);
+            }
             $title = 'Quản lý link';
             $counter = $link['Link']['total_view']+1;
             $this->Link->id = $link['Link']['id'];

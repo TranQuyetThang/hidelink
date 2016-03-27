@@ -35,9 +35,9 @@ class Link extends AppModel {
 
     public $actsAs = array(
         'Search.Searchable',
-        'Utils.Publishable' => array(
-            'field' => 'status'
-        ),
+        // 'Utils.Publishable' => array(
+        //     'field' => 'status'
+        // ),
     );
 
     public function generateLink($length = 10) {
