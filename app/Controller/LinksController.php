@@ -146,9 +146,10 @@ class LinksController extends AppController {
                 'Link.slug' => $url
             )
         ));
+        
         if(empty($link))
         {
-            throw new NotFoundException('Không tìm thấy link');   
+            throw new NotFoundException('Không tìm thấy link phù hợp');
         }
         else     
         {
