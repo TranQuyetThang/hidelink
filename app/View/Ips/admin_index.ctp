@@ -460,57 +460,35 @@ td, th {
                     <div class="table-responsive">
                         <table class="table table-bordered" style="margin-top: 50px;">
                             <div>
-                                <div style="float: left;">Quản lý link</div>
+                                <div style="float: left;">Quản lý Ip</div>
                                 <div style="float: right;">
-                                    <a href='<?php echo $this->Html->url(array("action" => "add"))?>'><button type="button" class="btn btn-success">Thêm link</button></a>
-                                    <a href='<?php echo $this->Html->url(array("controller" => "Ips","action" => "index"))?>'><button type="button" class="btn btn-danger">Quản lý Ip</button></a>
+                                    <a href='<?php echo $this->Html->url(array("action" => "add"))?>'><button type="button" class="btn btn-success">Thêm Ip</button></a>
+                                    <a href='<?php echo $this->Html->url(array("controller" => "Links", "action" => "index"))?>'><button type="button" class="btn btn-success">Quản lý links</button></a>
                                 </div>
                             </div>
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Title</th>
-                                <th>PIC</th>
-                                <th>Description / Link</th>
-                                <th>User</th>
-                                <th style="width: 8%;">
-                                    Status
-                                </th>
+                                <th>Ip</th>
                                 <th style="width: 6%;">Edit</th>
-                                <th>Select</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php foreach ($links as $link): ?>
+                            <?php foreach ($ips as $ip): ?>
                             <tr>
-                                <td><?php echo $link['Link']['id']; ?></td>
+                                <td><?php echo $ip['Ip']['id']; ?></td>
+                                <td><?php echo $ip['Ip']['ip']; ?></td>
                                 <td>
-                                <?php echo $link['Link']['title']; ?><br/>
-                                <span style="border: 1px solid;">View <?php echo $link['Link']['total_view']; ?></span>
+                                    <?php echo $this->Html->link('Edit', array('action' => 'edit', $ip['Ip']['id']), array('class' => 'btn btn-mini')); ?>/<?php echo $this->Html->link('Delete', array('action' => 'delete', $ip['Ip']['id']), array('class' => 'btn btn-mini'),__('Are you sure you want to delete # %s?', $ip['Ip']['id'])); ?>
                                 </td>
-                                <td><a href="<?php echo $link['Link']['pic']; ?>"><img src="<?php echo $link['Link']['pic']; ?>" style="width: 240px;height: 160px;"></a></td>
-                                <td><?php echo $link['Link']['description']; ?> <br/> <span style="border: 1px solid;padding: 2px 20px;"><?php echo $link['Link']['domain'].'/hlink/slug/'.$link['Link']['slug'] ?></span></td>
-                                <td><?php echo $link['Link']['user_id']; ?></td>
-                                <td>
-                                    <?php
-                                    if (empty($link['Link']['status'])) {
-                                        echo $this->Html->link('On', array( 'action' => 'publish', $link['Link']['id'], 'admin' => true), array('class' => 'btn btn-mini', 'style' => 'width: 49px'));
-                                    } else {
-                                        echo $this->Html->link('Off', array('action' => 'unpublish', $link['Link']['id']), array('class' => 'btn btn-mini', 'escape' => false));
-                                    }
-                                    ?>
-                                </td>
-                                <td>
-                                    <?php echo $this->Html->link('Edit', array('action' => 'edit', $link['Link']['id']), array('class' => 'btn btn-mini')); ?>/<?php echo $this->Html->link('Delete', array('action' => 'delete', $link['Link']['id']), array('class' => 'btn btn-mini'),__('Are you sure you want to delete # %s?', $link['Link']['id'])); ?>
-                                </td>
-                                <td><input type="checkbox" name="myTextEditBox" value="checked" /></td>
+                                
                             </tr>
                             <?php endforeach; ?>
                             <!-- phân trang -->
                             <tr>
                                 <td colspan="8">
                                     <?php
-                                    $hasPages = ($this->params['paging']['Link']['pageCount'] > 1);
+                                    $hasPages = ($this->params['paging']['Ip']['pageCount'] > 1);
                                     if ($hasPages) :
                                         ?>
                                         <div class="paging">

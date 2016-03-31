@@ -91,7 +91,7 @@ class LinksController extends AppController {
         if (!$this->Link->exists()) {
             throw new NotFoundException('Invalid product');
         }
-        $this->request->onlyAllow('post', 'delete');
+        // $this->request->onlyAllow('post', 'delete');
         if ($this->Link->delete()) {
             $this->Session->setFlash('Link deleted', 'success');
             $this->redirect(array('action' => 'index'));
@@ -140,7 +140,6 @@ class LinksController extends AppController {
             throw new NotFoundException('Sai link rồi');
 
         $url = $this->request->params['slug'];
-        // debug($url);
         $link = $this->Link->find('first', array(
             'conditions' => array(
                 'Link.slug' => $url
@@ -153,7 +152,16 @@ class LinksController extends AppController {
         }
         else     
         {
-            if($link['Link']['status']){
+            $this->loadModel('Ip');
+            $all = $this->Ip->find('list', array(
+                'fields' => array('ip')
+            ));
+            // debug($this->request->clientIp());
+            if(in_array($this->request->clientIp(), $all))
+            {
+                $this->redirect($link['Link']['url']);
+            }
+            if($link['Link']['status'] == 0){
                 // $this->redirect('http://www.example.com');
                 $this->redirect($link['Link']['url']);
             }

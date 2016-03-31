@@ -440,9 +440,7 @@ td, th {
                                 <h3></h3>
                             </div>
                             <div style="float: right;">
-                                <button class="btn btn-primary" type="submit" form="form1" value="Submit">Sumit</button>
-                                <button type="button" class="btn btn-default">Làm lại</button>
-                                <button type="button" class="btn btn-default">Danh sách</button>
+                                <a href="<?php echo $this->Html->url(array('action' => 'index')) ?>"><button type="button" class="btn btn-default">Danh sách</button></a>
                             </div>
                         </div>
                         <div>
@@ -460,19 +458,6 @@ td, th {
                                 echo $this->Form->input('id');
                             }
                             ?>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Loại <span style="color: red">*</span>:</label>
-                                <?php
-                                echo $this->Form->input('Link.type',array(
-                                    'placeholder' => '',
-                                    'type'  => 'text',
-                                    'class' =>'form-control',
-                                    'label' =>false,
-                                    'div'   => false
-                                ));
-                                ?>
-                                <p style="margin-left: 220px;">Nếu là bài viết bình thường thì là <span style="color: red">POST</span>. Nếu là ảnh thì <span style="color: red">PICTURE</span></p>
-                            </div>
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tiêu đề <span style="color: red">*</span>:</label>
@@ -530,7 +515,6 @@ td, th {
                                 <p style="margin-left: 220px;">Tên miền này sử dụng cho bài</p>
                             </div>
 
-                            <?php if (!empty($this->data['Link']['id'])) { ?>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">URL <span style="color: red">*</span>:</label>
                                 <?php
@@ -545,7 +529,6 @@ td, th {
                                 ?>
                                 <p style="margin-left: 220px;">Là đường dẫn cần chuyển hướng tới</p>
                             </div>
-                            <?php } ?>
         
                             <?php
                                 if (!empty($this->data['Link']['slug'])) 
@@ -582,15 +565,6 @@ td, th {
                                 'label' => false,
                                 'div' => false
                             ));
-                            ?>
-                            <?php
-                            echo $this->Form->input('danh sách',
-                                array(
-                                    'type' => 'button',
-                                    'class' => 'btn btn-primary',
-                                    'label' => false,
-                                    'div' => false
-                                ));
                             ?>
 <!--                            <button type="button" class="btn btn-default">Làm lại</button>-->
 <!--                            <button type="button" class="btn btn-default">Danh sách</button>-->

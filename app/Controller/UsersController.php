@@ -22,7 +22,6 @@ class UsersController extends AppController {
     public function register(){
         $this->layout = 'default2';
         if($this->request->is('post')){
-//            debug($this->request->data);exit;
             $this->loadModel('User');
             $this->request->data['User']['role'] = 'User';
             if($this->User->save($this->request->data)){
