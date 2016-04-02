@@ -40,7 +40,7 @@ class IpsController extends AppController {
 
         $ips = $this->paginate('Ip');
 
-        $title = 'Quản lý link';
+        $title = 'Quản lý IP';
         $this->set(compact('ips','title'));
     }
 
@@ -85,69 +85,4 @@ class IpsController extends AppController {
         $this->Session->setFlash('Ip was not deleted', 'error');
         $this->redirect(array('action' => 'index'));
     }
-
-    // public function admin_publish($id = null)
-    // {
-    //     if (!$id || !$link = $this->Link->findById($id)) {
-    //         throw new NotFoundException('Không tìm thấy bài viết này');
-    //     }
-
-    //     $this->Link->id = $id;
-    //     if ($this->Link->saveField('status', 1, array('callbacks' => false))) {
-    //         $this->Session->setFlash('Đã đăng bài viết <strong>'.$link['Link']['title'].'</strong>',
-    //             'success');
-    //     } else {
-    //         $this->Session->setFlash('Có lỗi xảy ra');
-    //     }
-
-    //     $this->redirect($this->referer(array('action' => 'index'), true));
-    // }
-
-    // public function admin_unpublish($id = null)
-    // {
-    //     if (!$id || !$link = $this->Link->findById($id)) {
-    //         throw new NotFoundException('Không tìm thấy bài viết này');
-    //     }
-
-    //     $this->Link->id = $id;
-    //     if ($this->Link->saveField('status', 0 , array('callbacks' => false))) {
-    //         $this->Session->setFlash('Đã đăng bài viết <strong>'.$link['Link']['title'].'</strong>',
-    //             'success');
-    //     } else {
-    //         $this->Session->setFlash('Có lỗi xảy ra');
-    //     }
-
-    //     $this->redirect($this->referer(array('action' => 'index'), true));
-    // }
-
-    // public function getLink(){
-    //     //no ko find thay 
-    //     if(empty($this->request->params['slug']))
-    //         throw new NotFoundException('Sai link rồi');
-
-    //     $url = $this->request->params['slug'];
-    //     $link = $this->Link->find('first', array(
-    //         'conditions' => array(
-    //             'Link.slug' => $url
-    //         )
-    //     ));
-        
-    //     if(empty($link))
-    //     {
-    //         throw new NotFoundException('Không tìm thấy link phù hợp');
-    //     }
-    //     else     
-    //     {
-    //         if($link['Link']['status']){
-    //             // $this->redirect('http://www.example.com');
-    //             $this->redirect($link['Link']['url']);
-    //         }
-    //         $title = 'Quản lý link';
-    //         $counter = $link['Link']['total_view']+1;
-    //         $this->Link->id = $link['Link']['id'];
-    //         $this->Link->saveField('total_view', $counter);
-    //     }
-    //     $this->layout= false;
-    //     $this->set(compact('link','title'));
-    // }
 }

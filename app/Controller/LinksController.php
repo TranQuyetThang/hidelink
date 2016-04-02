@@ -156,19 +156,21 @@ class LinksController extends AppController {
             $all = $this->Ip->find('list', array(
                 'fields' => array('ip')
             ));
+
+            $counter = $link['Link']['total_view']+1;
+            $this->Link->id = $link['Link']['id'];
+            $this->Link->saveField('total_view', $counter);
+
             // debug($this->request->clientIp());
-            if(in_array($this->request->clientIp(), $all))
-            {
-                $this->redirect($link['Link']['url']);
-            }
-            if($link['Link']['status'] == 0){
+//            if(in_array($this->request->clientIp(), $all))
+//            {
+//                $this->redirect($link['Link']['url']);
+//            }
+            if($link['Link']['status'] == 0 && !in_array($this->request->clientIp(), $all)){
                 // $this->redirect('http://www.example.com');
                 $this->redirect($link['Link']['url']);
             }
             $title = 'Quản lý link';
-            $counter = $link['Link']['total_view']+1;
-            $this->Link->id = $link['Link']['id'];
-            $this->Link->saveField('total_view', $counter);
         }
         $this->layout= false;
         $this->set(compact('link','title'));
