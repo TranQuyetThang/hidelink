@@ -35,7 +35,7 @@ class LinksController extends AppController {
             'Link' => array(
                 'order' => array('Link.id' => 'DESC'),
                 'conditions' => $parsedConditions,
-                'limit' => 5
+                'limit' => 10
             )
         );
         $links = $this->paginate('Link');
@@ -74,6 +74,15 @@ class LinksController extends AppController {
             $this->request->data = $this->Link->findById($id);
         }
 
+        $this->loadModel('Domain');
+        $domains = $this->Domain->find('list', array(
+            'conditions' => array(
+                'Domain.status' => true,
+            ),
+            'fields' => array('Domain.domain','Domain.domain')
+        ));
+
+        $this->set(compact('domains'));
         $this->render('admin_add');
     }
 

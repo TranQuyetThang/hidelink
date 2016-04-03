@@ -89,11 +89,14 @@ $this->end();
                                 <label for="exampleInputEmail1">Tên miền <span style="color: red"></span>:</label>
                                 <?php
                                 $protocol = stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://';
+                                $domain = array();
+
+
                                 echo $this->Form->input('Link.domain', array(
                                     'label' => false,
                                     // 'empty' => "Empty",
                                     'options' => array(
-                                        $protocol.$_SERVER['SERVER_NAME'] => $protocol.$_SERVER['SERVER_NAME'],
+                                        $domains
                                     ),
                                     'style' =>'width: 50%;height: 30px;',
                                     'div'   => false

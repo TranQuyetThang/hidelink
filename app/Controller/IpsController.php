@@ -34,7 +34,7 @@ class IpsController extends AppController {
         $this->paginate = array(
             'Ip' => array(
                 // 'conditions' => $parsedConditions,   
-                'limit' => 5
+                'limit' => 20
             )
         );
 
