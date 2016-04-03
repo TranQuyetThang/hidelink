@@ -138,7 +138,8 @@ $this->end();
                                         'fieldset' => false,
                                         'div'   => false,
                                         'type' => 'radio',
-                                        'options' => array('0'=>'không', '1'=>'có'),
+                                        'options' => array(false=>'không', true=>'có'),
+                                        'default' => true
                                     ));
                                     ?>
                                 </div>
