@@ -12,9 +12,6 @@
             <li>
                 <a href="<?php echo $this->Html->url(array("action" => "index"))?>">Đăng nhập</a>
             </li>
-            <li>
-                <a href="<?php echo $this->Html->url(array("action" => "register"))?>">Đăng ký</a>
-            </li>
         </ul>
     </nav>
     <!-- /#sidebar-wrapper -->

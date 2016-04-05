@@ -5,6 +5,7 @@
 ?>
 <div id="wrapper">
     <div class="overlay"></div>
+    <div style="color: green; display: block;"><center><?php echo $this->Session->flash(); ?></center></div>
     <?php echo $this->element('nav-admin'); ?>
     <!-- Page Content -->
     <div id="page-content-wrapper">

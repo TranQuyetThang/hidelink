@@ -64,10 +64,10 @@ class LinksController extends AppController {
                 $this->request->data['Link']['total_view'] = 0;
             }
             if ($this->Link->save($this->request->data)) {
-                $this->Session->setFlash('The link has been saved', 'success');
+                $this->Session->setFlash('The link has been saved');
                 $this->redirect(array('action' => 'index'));
             } else {
-                $this->Session->setFlash('The link could not be saved. Please, try again.', 'error');
+                $this->Session->setFlash('The link could not be saved. Please, try again.');
             }
         }
         if (!empty($id)) {
@@ -102,10 +102,10 @@ class LinksController extends AppController {
         }
         // $this->request->onlyAllow('post', 'delete');
         if ($this->Link->delete()) {
-            $this->Session->setFlash('Link deleted', 'success');
+            $this->Session->setFlash('Link deleted');
             $this->redirect(array('action' => 'index'));
         }
-        $this->Session->setFlash('Link was not deleted', 'error');
+        $this->Session->setFlash('Link was not deleted');
         $this->redirect(array('action' => 'index'));
     }
 
@@ -117,8 +117,7 @@ class LinksController extends AppController {
 
         $this->Link->id = $id;
         if ($this->Link->saveField('status', 1, array('callbacks' => false))) {
-            $this->Session->setFlash('Đã đăng bài viết <strong>'.$link['Link']['title'].'</strong>',
-                'success');
+            $this->Session->setFlash('Đã đăng bài viết <strong>'.$link['Link']['title'].'</strong>');
         } else {
             $this->Session->setFlash('Có lỗi xảy ra');
         }
@@ -134,8 +133,7 @@ class LinksController extends AppController {
 
         $this->Link->id = $id;
         if ($this->Link->saveField('status', 0 , array('callbacks' => false))) {
-            $this->Session->setFlash('Đã đăng bài viết <strong>'.$link['Link']['title'].'</strong>',
-                'success');
+            $this->Session->setFlash('Đã đăng bài viết <strong>'.$link['Link']['title'].'</strong>');
         } else {
             $this->Session->setFlash('Có lỗi xảy ra');
         }
@@ -203,10 +201,10 @@ class LinksController extends AppController {
     public function admin_deleteAll()
     {
         if ($this->Link->deleteAll('1=1')) {
-            $this->Session->setFlash('Ip deleted', 'success');
+            $this->Session->setFlash('Deleted all');
             $this->redirect(array('action' => 'index'));
         }
-        $this->Session->setFlash('Ip was not deleted', 'error');
+        $this->Session->setFlash('Not deleted');
         $this->redirect(array('action' => 'index'));
     }
 }

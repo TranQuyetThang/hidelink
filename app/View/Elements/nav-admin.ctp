@@ -2,7 +2,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
     <ul class="nav sidebar-nav">
         <li class="sidebar-brand">
-            Home
+            <?php echo $this->Session->read('User')['username']; ?>
         </li>
 
         <li>
@@ -15,6 +15,14 @@
 
         <li>
             <a href="<?php echo $this->Html->url(array("controller" => "domains", "action" => "index", "admin" => true))?>">Domains</a>
+        </li>
+
+        <li>
+            <a href="<?php echo $this->Html->url(array("controller" => "users", "action" => "register", "admin" => true))?>">Đăng ký</a>
+        </li>
+
+        <li>
+            <a href="<?php echo $this->Html->url(array("controller" => "users", "action" => "resetPass", "admin" => true))?>">Đổi mật khẩu</a>
         </li>
 
         <li>

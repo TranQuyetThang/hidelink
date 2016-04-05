@@ -1,23 +1,8 @@
 <div id="wrapper">
+    <div style="color: green; display: block;"><center><?php echo $this->Session->flash(); ?></center></div>
     <div class="overlay"></div>
-
     <!-- Sidebar -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
-        <ul class="nav sidebar-nav">
-            <li class="sidebar-brand">
-                <a href="#">
-                    Brand
-                </a>
-            </li>
-            <li>
-                <a href="<?php echo $this->Html->url(array("action" => "index"))?>">Đăng nhập</a>
-            </li>
-            <li>
-                <a href="<?php echo $this->Html->url(array("action" => "register"))?>">Đăng ký</a>
-            </li>
-        </ul>
-    </nav>
-    <!-- /#sidebar-wrapper -->
+    <?php echo $this->element('nav-admin'); ?>
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
@@ -47,26 +32,27 @@
                                     'username',
                                     array(
                                         'label' => false,
-                                        'id' => 'Field1',
-                                        'placeholder' => 'Tên đăng nhập',
+                                        'placeholder' => $this->Session->read('User')['username'],
                                         'tabindex' => '1',
                                         'class' => 'form-control',
                                         'required'=>false,
-                                        'errorMessage' => false
+                                        'errorMessage' => false,
+                                        'disabled' => true
                                     )
                                 );
                                 ?>
                             </div>
                         </div>
+
                         <div>
                             <div>
                                 <?php
                                 echo $this->Form->input(
-                                    'email',
+                                    'password',
                                     array(
                                         'label' => false,
-                                        'id' => 'email',
-                                        'placeholder' => 'Email',
+                                        'id' => 'password',
+                                        'placeholder' => 'Password cũ',
                                         'tabindex' => '1',
                                         'class' => 'form-control',
                                         'required'=>false,
@@ -80,11 +66,11 @@
                             <div>
                                 <?php
                                     echo $this->Form->input(
-                                        'password',
+                                        'password_new',
                                         array(
                                             'label' => false,
                                             'id' => 'password',
-                                            'placeholder' => 'Mật khẩu',
+                                            'placeholder' => 'Mật khẩu mới',
                                             'tabindex' => '1',
                                             'class' => 'form-control',
                                             'type'=>'password',
@@ -99,7 +85,7 @@
                             <div>
                                 <?php
                                 echo $this->Form->input(
-                                    'repassword',
+                                    'repassword_new',
                                     array(
                                         'label' => false,
                                         'id' => 'repassword',
@@ -117,7 +103,7 @@
                         </div>
                         <div>
                             <div>
-                                <input id="saveForm" class="btn btn-primary" type="submit" value="Đăng ký">
+                                <input id="saveForm" class="btn btn-primary" type="submit" value="Đổi pass">
                             </div>
                         </div>
 
