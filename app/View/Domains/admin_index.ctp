@@ -27,7 +27,6 @@ $this->end();
                                 <div style="float: left;">Quản lý Domain</div>
                                 <div style="float: right;">
                                     <a href='<?php echo $this->Html->url(array("action" => "add"))?>'><button type="button" class="btn btn-success">Thêm Domain</button></a>
-                                    <a href='<?php echo $this->Html->url(array("controller" => "Domains", "action" => "index"))?>'><button type="button" class="btn btn-success">Quản lý domain</button></a>
                                 </div>
                             </div>
                             <thead>

@@ -27,7 +27,6 @@
                                 <div style="float: left;">Quản lý link</div>
                                 <div style="float: right;">
                                     <a href='<?php echo $this->Html->url(array("action" => "add"))?>'><button type="button" class="btn btn-success">Thêm link</button></a>
-                                    <a href='<?php echo $this->Html->url(array("controller" => "Ips","action" => "index"))?>'><button type="button" class="btn btn-danger">Quản lý Ip</button></a>
                                 </div>
                             </div>
                             <thead>
@@ -41,7 +40,6 @@
                                     Status
                                 </th>
                                 <th style="width: 6%;">Edit</th>
-                                <th>Select</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -66,7 +64,6 @@
                                 <td>
                                     <?php echo $this->Html->link('Edit', array('action' => 'edit', $link['Link']['id']), array('class' => 'btn btn-mini')); ?>/<?php echo $this->Html->link('Delete', array('action' => 'delete', $link['Link']['id']), array('class' => 'btn btn-mini'),__('Are you sure you want to delete # %s?', $link['Link']['id'])); ?>
                                 </td>
-                                <td><input type="checkbox" name="myTextEditBox" value="checked" /></td>
                             </tr>
                             <?php endforeach; ?>
                             <!-- phân trang -->
