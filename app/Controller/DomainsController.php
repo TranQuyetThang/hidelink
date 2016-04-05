@@ -78,4 +78,15 @@ class DomainsController extends AppController {
         $this->Session->setFlash('domain was not deleted', 'error');
         $this->redirect(array('action' => 'index'));
     }
+
+
+    public function admin_deleteAll()
+    {
+        if ($this->Domain->deleteAll('1=1')) {
+            $this->Session->setFlash('Ip deleted', 'success');
+            $this->redirect(array('action' => 'index'));
+        }
+        $this->Session->setFlash('Ip was not deleted', 'error');
+        $this->redirect(array('action' => 'index'));
+    }
 }

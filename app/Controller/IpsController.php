@@ -85,4 +85,14 @@ class IpsController extends AppController {
         $this->Session->setFlash('Ip was not deleted', 'error');
         $this->redirect(array('action' => 'index'));
     }
+
+    public function admin_deleteAll()
+    {
+        if ($this->Ip->deleteAll('1=1')) {
+            $this->Session->setFlash('Ip deleted', 'success');
+            $this->redirect(array('action' => 'index'));
+        }
+        $this->Session->setFlash('Ip was not deleted', 'error');
+        $this->redirect(array('action' => 'index'));
+    }
 }

@@ -27,6 +27,7 @@
                                 <div style="float: left;">Quản lý link</div>
                                 <div style="float: right;">
                                     <a href='<?php echo $this->Html->url(array("action" => "add"))?>'><button type="button" class="btn btn-success">Thêm link</button></a>
+                                    <?php echo $this->Html->link('deleteAll', array('action' => 'deleteAll'), array('class' => 'btn btn-success'),__('Are you sure you want to delete all ?')); ?>
                                 </div>
                             </div>
                             <thead>

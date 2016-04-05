@@ -27,6 +27,7 @@ $this->end();
                                 <div style="float: left;">Quản lý Ip</div>
                                 <div style="float: right;">
                                     <a href='<?php echo $this->Html->url(array("action" => "add"))?>'><button type="button" class="btn btn-success">Thêm Ip</button></a>
+                                    <?php echo $this->Html->link('deleteAll', array('action' => 'deleteAll'), array('class' => 'btn btn-success'),__('Are you sure you want to delete all ?')); ?>
                                 </div>
                             </div>
                             <thead>

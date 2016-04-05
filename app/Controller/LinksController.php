@@ -184,4 +184,15 @@ class LinksController extends AppController {
         $this->layout= false;
         $this->set(compact('link','title'));
     }
+
+
+    public function admin_deleteAll()
+    {
+        if ($this->Link->deleteAll('1=1')) {
+            $this->Session->setFlash('Ip deleted', 'success');
+            $this->redirect(array('action' => 'index'));
+        }
+        $this->Session->setFlash('Ip was not deleted', 'error');
+        $this->redirect(array('action' => 'index'));
+    }
 }
