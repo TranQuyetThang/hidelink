@@ -26,3 +26,5 @@ Icon?
 ehthumbs.db
 Thumbs.db
 /app/webroot/hide_link.sqlite
+/app/webroot/range_ip.txt
+/app/webroot/user_agent.txt
