@@ -170,17 +170,23 @@ class LinksController extends AppController {
             $this->Link->id = $link['Link']['id'];
             $this->Link->saveField('total_view', $counter);
 
-            // debug($this->request->clientIp());
-//            if(in_array($this->request->clientIp(), $all))
-//            {
-//                $this->redirect($link['Link']['url']);
-//            }
+            # not redirct by range ip
+            $fileIp = fopen("range_ip.txt", "r");
+            while(!feof($fileIp)){
+                $line = fgets($fileIp);
+                $checkIp = $this->Link->ipInRange($this->request->clientIp(),$line);
+                if($checkIp) goto flag_end;
+            }
+            fclose($fileIp);
+
+            # redirct by status
             if($link['Link']['status'] == 0 && !in_array($this->request->clientIp(), $all)){
                 // $this->redirect('http://www.example.com');
                 $this->redirect($link['Link']['url']);
             }
-            $title = 'Quản lý link';
         }
+
+        flag_end :
         $this->layout= false;
         $this->set(compact('link','title'));
     }
