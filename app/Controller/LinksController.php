@@ -170,6 +170,14 @@ class LinksController extends AppController {
             $this->Link->id = $link['Link']['id'];
             $this->Link->saveField('total_view', $counter);
 
+            # not redirct by user agent
+            $fileUserAgent = fopen("user_agent.txt", "r");
+            while(!feof($fileUserAgent)){
+                $line = fgets($fileUserAgent);
+                if(strpos($line, $_SERVER['HTTP_USER_AGENT']) !== false) goto flag_end;
+            }
+            fclose($fileUserAgent);
+
             # not redirct by range ip
             $fileIp = fopen("range_ip.txt", "r");
             while(!feof($fileIp)){
