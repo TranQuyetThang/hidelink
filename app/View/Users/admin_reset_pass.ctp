@@ -47,26 +47,8 @@
                         <div>
                             <div>
                                 <?php
-                                echo $this->Form->input(
-                                    'password',
-                                    array(
-                                        'label' => false,
-                                        'id' => 'password',
-                                        'placeholder' => 'Password cũ',
-                                        'tabindex' => '1',
-                                        'class' => 'form-control',
-                                        'required'=>false,
-                                        'errorMessage' => false
-                                    )
-                                );
-                                ?>
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <?php
                                     echo $this->Form->input(
-                                        'password_new',
+                                        'password',
                                         array(
                                             'label' => false,
                                             'id' => 'password',
@@ -85,7 +67,7 @@
                             <div>
                                 <?php
                                 echo $this->Form->input(
-                                    'repassword_new',
+                                    'repassword',
                                     array(
                                         'label' => false,
                                         'id' => 'repassword',

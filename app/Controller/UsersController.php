@@ -52,7 +52,28 @@ class UsersController extends AppController {
 
     public function admin_resetPass(){
         $this->layout = 'default2';
-        debug($this->request->data);
+
+        if($this->request->is('post')){
+            $this->request->data['User']['password'] = md5($this->request->data['User']['password']);
+            $this->request->data['User']['repassword'] = md5($this->request->data['User']['repassword']);
+
+            $this->request->data['User']['email'] = $this->Session->read('User')['email'];
+            $this->request->data['User']['username'] = $this->Session->read('User')['username'];
+            if($this->request->data['User']['password'] != $this->request->data['User']['repassword']){
+                $this->Session->setFlash('xác nhận password không đúng');
+                $this->redirect(array('controller'=>'links','action'=>'index','admin'=>true));
+            }
+
+            $this->User->id = $this->Session->read('User')['id'];
+            if($this->User->save($this->request->data)){
+                $this->request->data['User']['id'] = $this->User->id;
+                $this->Session->write('User', $this->request->data['User']);
+                $this->Session->setFlash('đổi pass thành công');
+                $this->redirect(array('controller'=>'links','action'=>'index','admin'=>true));
+            }else{
+                $this->Session->setFlash($this->User->validationErrors,'error',array(),'error');
+            }
+        }
     }
 
     public function logout(){
