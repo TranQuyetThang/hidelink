@@ -43,10 +43,10 @@ class DomainsController extends AppController {
 
             $this->Domain->create();
             if ($this->Domain->save($this->request->data)) {
-                $this->Session->setFlash('The domain has been saved', 'success');
+                $this->Session->setFlash('Domain đã được lưu');
                 $this->redirect(array('action' => 'index'));
             } else {
-                $this->Session->setFlash('The domain could not be saved. Please, try again.', 'error');
+                $this->Session->setFlash('Đã có lỗi xảy ra');
             }
         }
         if (!empty($id)) {
@@ -59,7 +59,7 @@ class DomainsController extends AppController {
     public function admin_edit($id = null)
     {
         if (!$this->Domain->exists($id)) {
-            throw new NotFoundException('Invalid domain');
+            throw new NotFoundException('Đã có lỗi xảy ra');
         }
         $this->admin_add($id);
     }
@@ -68,14 +68,14 @@ class DomainsController extends AppController {
     {
         $this->Domain->id = $id;
         if (!$this->Domain->exists()) {
-            throw new NotFoundException('Invalid product');
+            throw new NotFoundException('Đã có lỗi xảy ra');
         }
         // $this->request->onlyAllow('post', 'delete');
         if ($this->Domain->delete()) {
-            $this->Session->setFlash('domain deleted', 'success');
+            $this->Session->setFlash('Đã xóa domain');
             $this->redirect(array('action' => 'index'));
         }
-        $this->Session->setFlash('domain was not deleted', 'error');
+        $this->Session->setFlash('Đã có lỗi xảy ra');
         $this->redirect(array('action' => 'index'));
     }
 
@@ -83,10 +83,10 @@ class DomainsController extends AppController {
     public function admin_deleteAll()
     {
         if ($this->Domain->deleteAll('1=1')) {
-            $this->Session->setFlash('Ip deleted', 'success');
+            $this->Session->setFlash('Đã xóa hết danh sach domain');
             $this->redirect(array('action' => 'index'));
         }
-        $this->Session->setFlash('Ip was not deleted', 'error');
+        $this->Session->setFlash('Đã có lỗi xảy ra');
         $this->redirect(array('action' => 'index'));
     }
 }
