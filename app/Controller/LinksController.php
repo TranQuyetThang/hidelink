@@ -64,10 +64,10 @@ class LinksController extends AppController {
                 $this->request->data['Link']['total_view'] = 0;
             }
             if ($this->Link->save($this->request->data)) {
-                $this->Session->setFlash('Link này đã được lưu !');
+                $this->Session->setFlash('The link has been saved');
                 $this->redirect(array('action' => 'index'));
             } else {
-                $this->Session->setFlash('Link chưa được lưu, vui lòng thử lại!');
+                $this->Session->setFlash('The link could not be saved. Please, try again.');
             }
         }
         if (!empty($id)) {
@@ -89,7 +89,7 @@ class LinksController extends AppController {
     public function admin_edit($id = null)
     {
         if (!$this->Link->exists($id)) {
-            throw new NotFoundException('Không tìm thấy link');
+            throw new NotFoundException('Invalid link');
         }
         $this->admin_add($id);
     }
@@ -98,21 +98,21 @@ class LinksController extends AppController {
     {
         $this->Link->id = $id;
         if (!$this->Link->exists()) {
-            throw new NotFoundException('Không tìm thấy link');
+            throw new NotFoundException('Invalid product');
         }
         // $this->request->onlyAllow('post', 'delete');
         if ($this->Link->delete()) {
-            $this->Session->setFlash('Đã xóa link !');
+            $this->Session->setFlash('Link deleted');
             $this->redirect(array('action' => 'index'));
         }
-        $this->Session->setFlash('Chưa xóa được link');
+        $this->Session->setFlash('Link was not deleted');
         $this->redirect(array('action' => 'index'));
     }
 
     public function admin_publish($id = null)
     {
         if (!$id || !$link = $this->Link->findById($id)) {
-            throw new NotFoundException('Không tìm thấy link');
+            throw new NotFoundException('Không tìm thấy bài viết này');
         }
 
         $this->Link->id = $id;
@@ -128,7 +128,7 @@ class LinksController extends AppController {
     public function admin_unpublish($id = null)
     {
         if (!$id || !$link = $this->Link->findById($id)) {
-            throw new NotFoundException('Không tìm thấy link này');
+            throw new NotFoundException('Không tìm thấy bài viết này');
         }
 
         $this->Link->id = $id;
@@ -201,10 +201,10 @@ class LinksController extends AppController {
     public function admin_deleteAll()
     {
         if ($this->Link->deleteAll('1=1')) {
-            $this->Session->setFlash('Đã xóa toàn bộ link');
+            $this->Session->setFlash('Deleted all');
             $this->redirect(array('action' => 'index'));
         }
-        $this->Session->setFlash('Không xóa được');
+        $this->Session->setFlash('Not deleted');
         $this->redirect(array('action' => 'index'));
     }
 }
