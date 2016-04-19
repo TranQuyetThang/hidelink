@@ -11,11 +11,12 @@
         ?>
     </title>
     <?php
-    echo '<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">';
+    echo $this->Html->css('bootstrap.min');
     echo $this->fetch('css');
+
+    echo $this->Html->script('jquery-1.11.1.min');
+    echo $this->Html->script('bootstrap.min');
     ?>
-    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <?php echo $this->fetch('script'); ?>
     <script type='text/javascript'>
         var BASE_URL = '<?php echo Router::url("/", true); ?>'

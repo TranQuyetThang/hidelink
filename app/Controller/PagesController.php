@@ -50,4 +50,33 @@ class PagesController extends AppController {
         $a = $this->User->find('all');
         debug($a);die;
 	}
+
+    public function home(){
+        $this->layout = null;
+
+        $this->loadModel('Link');
+        $this->loadModel('Token');
+        $Link = new Link();
+
+        if(!empty($this->request->params['token'])){
+            $this->request->data['Token']['token'] = $this->request->params['token'];
+        }else{
+            $this->request->data['Token']['token'] = $Link->generateLink(50);
+        }
+
+        $token = $this->Token->find('first', array(
+            'conditions' => array(
+                'Token.token' => $this->request->data['Token']['token'],
+            )
+        ));
+
+        if(empty($token['Token']) || (time() - strtotime($token['Token']['expried']) > 3600)){
+            $this->request->data['Token']['token'] = $Link->generateLink(50);
+            $this->request->data['Token']['expried'] = date('Y-m-d H:i:s');
+            $this->request->data['Token']['status'] = 1;
+            $this->Token->create();
+            $this->Token->save($this->request->data);
+            $this->redirect($this->referer(array('controller' => 'pages' ,'action' => 'home', 'token' => $this->request->data['Token']['token'])));
+        }
+    }
 }

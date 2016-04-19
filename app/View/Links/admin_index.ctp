@@ -52,7 +52,7 @@
                                 <?php echo $link['Link']['title']; ?>
                                 </td>
                                 <td><a href="<?php echo $link['Link']['pic']; ?>"><img src="<?php echo $link['Link']['pic']; ?>" style="width: 240px;height: 160px;"></a></td>
-                                <td><?php echo $link['Link']['description']; ?> <br/> <span style="padding: 2px 20px;"><a href="<?php echo $link['Link']['domain'].'/hlink/slug/'.$link['Link']['slug'] ?>" target="_blank" ><?php echo $link['Link']['domain'].'/hlink/slug/'.$link['Link']['slug'] ?></a></span></td>
+                                <td><?php echo $link['Link']['description']; ?> <br/> <span style="padding: 2px 20px;"><a href="<?php echo $link['Link']['domain'].'/hlink/slug/'.$link['Link']['slug'] ?>" target="_blank" ><?php echo $link['Link']['domain'].'/hlink/posts/'.$link['Link']['slug'] ?></a></span></td>
                                 <td><?php echo $link['Link']['total_view']; ?></td>
                                 <td>
                                     <?php

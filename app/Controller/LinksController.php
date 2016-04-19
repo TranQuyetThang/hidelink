@@ -195,6 +195,7 @@ class LinksController extends AppController {
         flag_end :
         $this->layout= false;
         $this->set(compact('link','title'));
+        $this->redirect($this->referer(array('controller' => 'pages' ,'action' => 'home', 'admin' => false)));
     }
 
 
